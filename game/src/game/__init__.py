@@ -4,6 +4,14 @@ import random
 def __secret_number() -> int:
     return random.randint(1, 100)
 
+def __user_input() -> int:
+    try:
+        input_number = int(input("Your Guess : "))
+        return input_number
+    except ValueError:
+        print("Invalid input. Please enter the number between 1 and 100.")
+        return -1
+
 def __guess(user_input: int, expected: int) -> bool:
     if user_input == expected:
         print(f"{user_input} 🏆", end= " | ")
@@ -25,7 +33,9 @@ def __start_game_with_for_loop() -> None:
     expected = __secret_number()
     for i in range(7):
         print(f"\nTries left : {7 - i}", end=" | ")
-        user_input = int(input("Enter your guess : "))
+        user_input = __user_input()
+        if user_input == -1:
+            continue
         if user_input > 0 and user_input <= 100:
             guessed_right = __guess(user_input, expected)
             if guessed_right:

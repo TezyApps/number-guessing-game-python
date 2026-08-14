@@ -1,2 +1,3 @@
 def main() -> None:
-    print("Hello from game!")
+    user_name = input("What should we call you? ")
+    print(f"Hello {user_name} 👋, Welcome to the 'Number Guessing Game'!")

@@ -2,39 +2,34 @@
 def __secret_number() -> int:
     return 56
 
+def __guess(user_input: int, expected: int) -> bool:
+    if user_input == expected:
+        print(f"{user_input} 🏆", end= " | ")
+        print("Congrats, you've guessed the number correct!")
+        return True
+    elif user_input > expected:
+        print(f"Your guess {user_input} is greater than the target")
+        print(f"{user_input} ❌", end= " | ")
+        print(f"Not Quite! Please try again")
+    elif user_input < expected:
+        print(f"Your guess {user_input} is less than the target")
+        print(f"{user_input} ❌", end= " | ")
+        print(f"Not Quite! Please try again")
+
+    return False
+
 def __start_game_with_for_loop() -> None:
-    print("\n Starting game")
+    print("\n Starting game. Enter a number between 1 and 100")
     for i in range(7):
-        print(f"\n Tries left : {7 - i}", end=" | ")
-        user_input = input(f"Enter your guess : ")
-        if int(user_input) == __secret_number():
-            print(f"{user_input} 🏆", end= " | ")
-            print("Congrats, you've guessed the number correct!")
-            break
+        print(f"\nTries left : {7 - i}", end=" | ")
+        user_input = int(input("Enter your guess : "))
+        if user_input > 0 and user_input <= 100:
+            guessed_right = __guess(user_input, __secret_number())
+            if guessed_right:
+                break
         else:
-            print(f"{user_input} ❌", end= " | ")
-            print(f"Not Quite! Please try again")
-    else:
-        print("\n Game Over \n")
-
-    print("\n Game Ended \n")
-
-def __start_game_with_while_loop() -> None:
-    tries = 7
-
-    print("\n Starting game")
-    while tries > 0:
-        print(f"\nTries left : {tries}", end=" | ")
-        tries -= 1
-
-        user_input = input("Enter your guess : ")
-        if int(user_input) == __secret_number():
-            print(f"{user_input} 🏆", end= " | ")
-            print("Congrats, you've guessed the number correct!")
-            break
-        else:
-            print(f"{user_input} ❌", end= " | ")
-            print(f"Not Quite! Please try again")
+            print("Invalid number! Please enter between 1 and 100")
+            continue
     else:
         print("\n Game Over \n")
 
@@ -43,6 +38,4 @@ def __start_game_with_while_loop() -> None:
 def main() -> None:
     user_name = input("What should we call you? ")
     print(f"Hello {user_name} 👋, Welcome to the 'Number Guessing Game'!")
-
-    # __start_game_with_for_loop()
-    __start_game_with_while_loop()
+    __start_game_with_for_loop()

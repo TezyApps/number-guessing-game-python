@@ -3,13 +3,21 @@ def secret_number() -> int:
     return 56
 
 def start_game() -> None:
-    user_input = input("Enter your guess : ")
-    if int(user_input) == secret_number():
-        print(f"{user_input} 🏆")
-        print("Congrats, you've guessed the number correct!")
+    print("\n Starting game")
+    for i in range(7):
+        print(f"\n Tries left : {7 - i}", end=" | ")
+        user_input = input(f"Enter your guess : ")
+        if int(user_input) == secret_number():
+            print(f"{user_input} 🏆", end= " | ")
+            print("Congrats, you've guessed the number correct!")
+            break
+        else:
+            print(f"{user_input} ❌", end= " | ")
+            print(f"Not Quite! Please try again")
     else:
-        print(f"{user_input} ❌")
-        print(f"Not Quite! Please try again")
+        print("\n Game Over \n")
+
+    print("\n Game Ended \n")
 
 def main() -> None:
     user_name = input("What should we call you? ")
